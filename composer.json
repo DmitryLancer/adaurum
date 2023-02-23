@@ -1,0 +1,14 @@
+{
+    "name": "dmitry/adaurum",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Dmitry Lancer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.6"
+    }
+}
