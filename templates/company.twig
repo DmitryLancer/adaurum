@@ -3,30 +3,30 @@
 {% block body %}
 
     <div class="container">
-    <h1 class="mt-3 mb-3">Company name</h1>
+    <h1 class="mt-3 mb-3">Информация о компании :</h1>
         <div class="name mb-1">
-            <div class="name-title" style="font-weight: bold">Название</div>
-            <span>ООО ТРИТМЭНТ</span>
+            <div class="name-title" style="font-weight: bold">Наименование :</div>
+            <span>{{ post.name|escape}}</span>
         </div>
         <div class="inn mb-1">
-            <div class="inn-title" style="font-weight: bold">ИНН</div>
-            <span>55570532</span>
+            <div class="inn-title" style="font-weight: bold">ИНН :</div>
+            <span>{{ post.inn|escape }}</span>
         </div>
         <div class="other mb-1">
-            <div class="other-title" style="font-weight: bold">Общая информация</div>
-            <span>Тест тест</span>
+            <div class="other-title" style="font-weight: bold">Общая информация :</div>
+            <span>{{ post.info|raw }}</span>
         </div>
         <div class="gen-dir mb-1">
-            <div class="director-title" style="font-weight: bold">Генеральный директор</div>
-            <span>Тимофеев Дмитрий Михайлович</span>
+            <div class="director-title" style="font-weight: bold">Генеральный директор :</div>
+            <span>{{ post.director }}</span>
         </div>
         <div class="adress mb-1">
-            <div class="adress-title" style="font-weight: bold">Адрес</div>
-            <span>3777737, Мурманская область, город Волоколамск, пр.1905 года, 24</span>
+            <div class="adress-title" style="font-weight: bold">Адрес :</div>
+            <span>{{ post.adress }}</span>
         </div>
         <div class="phone mb-1">
-            <div class="phone-title" style="font-weight: bold">Телефон</div>
-            <span>8 800 5 35 35</span>
+            <div class="phone-title" style="font-weight: bold">Телефон :</div>
+            <span>{{ post.phone }}</span>
         </div>
     </div>
 

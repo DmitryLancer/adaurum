@@ -10,6 +10,12 @@
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.6",
-        "twig/twig": "^3.5"
+        "twig/twig": "^3.5",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Post\\": "src/"
+        }
     }
 }
