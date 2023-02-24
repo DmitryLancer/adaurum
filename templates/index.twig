@@ -2,69 +2,28 @@
 
 {% block body %}
 <div class="container">
+    {% set rowCount = 1 %}
+    {% for post in posts %}
+        {% if rowCount == 1 %}
     <div class="container row">
+        {% endif %}
         <div class="p-1">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="/tritment">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 3777737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
+                    <h5 class="card-title"><a href="{{ post.url_key }}">{{ post.name|escape }}</a></h5>
+                    <p class="card-text">Адрес: {{ post.adress|escape }}</p>
+                    <p class="card-text">Телефон: {{ post.phone|escape }}</p>
+                    <p class="card-text">Гениральный директор: {{ post.director|escape }}</p>
                 </div>
             </div>
-        </div>
-        <div class="p-1">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/geser">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 377737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
-                </div>
+         </div>
+        {% set rowCount = rowCount +1 %}
+        {% if rowCount == 1 %}
             </div>
-        </div>
-        <div class="p-1">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="/pella">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 377737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container row">
-        <div class="p-1">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 377737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
-                </div>
-            </div>
-        </div>
-        <div class="p-1">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 377737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
-                </div>
-            </div>
-        </div>
-        <div class="p-1">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="">ООО ТРИТМЭНТ</a></h5>
-                    <p class="card-text">Адрес: 377737, Мурманская область, город Волоколамск, пр.1905 года, 24</p>
-                    <p class="card-text">Телефон: (495) 072-2793</p>
-                    <p class="card-text">Гениральный директор: Тимофеев Дмитрий Михайлович</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        {% endif %}
+        {% if rowCount > 3 %}
+            {% set rowCount = 1 %}
+        {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}

@@ -3,12 +3,13 @@
 
 namespace Post;
 
+use mysql_xdevapi\Exception;
 use PDO;
 
 class PostMapper
 {
 
-    private $connection;
+    private PDO $connection;
 
     public function __construct(PDO $connection)
     {
@@ -25,6 +26,18 @@ class PostMapper
         $result = $statement->fetchAll();
 
         return array_shift($result);
+    }
+
+    public function getList(string $direction): ?array
+    {
+        if (!in_array($direction, ['DESC', 'ASC'])) {
+            throw new Exception('The direction is not supported');
+        }
+        $statement = $this->connection->prepare('SELECT * FROM post ORDER BY published_date ' . $direction);
+
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
 
 }
