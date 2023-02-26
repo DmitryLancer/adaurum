@@ -5,24 +5,31 @@
 
         <h1>Register form!</h1>
 
+    {% if message is not null %}
+
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+
+    {% endif %}
 
     <form method="post" action="/register-post">
         <div class="form-group">
             <lable for="username">Username</lable>
-            <input type="text" name="username" class="form-control" id="username" value="">
+            <input type="text" name="username" class="form-control" id="username" value="{{ form ? form.username }}">
         </div>
         <div class="form-group">
             <lable for="username">Email</lable>
-            <input type="text" aria-describedby="emailHelp" name="email" class="form-control" id="email" value="">
+            <input type="text" aria-describedby="emailHelp" name="email" class="form-control" id="email" value="{{ form ? form.email }}">
             <small id="emailHelp" class="from-text text-muted">Адрес вашей почты не будет передан 3м лицам.</small>
         </div>
         <div class="form-group">
             <lable for="password">Password</lable>
-            <input type="password" name="password" class="form-control" id="password" value="">
+            <input type="password" name="password" class="form-control" id="password">
         </div>
         <div class="form-group">
             <lable for="password">Confirm Password</lable>
-            <input type="password" name="confirm_password" class="form-control" id="confirm_password" value="">
+            <input type="password" name="confirm_password" class="form-control" id="confirm_password">
         </div>
         <button type="submit" class="btn btn-primary">Registration</button>
     </form>
