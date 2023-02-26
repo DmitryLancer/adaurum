@@ -9,10 +9,12 @@ use PDO;
 class Authorization
 {
     private PDO $connection;
+    private Session $session;
 
-    public function __construct(PDO $connection)
+    public function __construct(PDO $connection, Session $session)
     {
         $this->connection = $connection;
+        $this->session = $session;
     }
 
     public function register(array $data): bool
@@ -65,6 +67,39 @@ class Authorization
 
 
         return true;
+    }
+
+    public function login(string $email, $password): bool
+    {
+        if (empty($email)) {
+            throw new AuthorizationException('The email should be empty');
+        }
+        if (empty($password)) {
+            throw new AuthorizationException('The password should be empty');
+        }
+
+        $statement = $this->connection->prepare(
+            'SELECT * FROM user WHERE email = :email'
+        );
+        $statement->execute([
+            'email' => $email
+        ]);
+
+        $user = $statement->fetch();
+        if (empty($user)) {
+            throw new AuthorizationException('User with such email not found');
+        }
+
+        if (password_verify($password, $user['password'])) {
+            $this->session->setData('user', [
+                'user_id' => $user['user_id'],
+                'username' => $user['username'],
+                'email' => $user['email'],
+            ]);
+            return true;
+        }
+
+        throw new AuthorizationException('Incorrect email or password');
     }
 
 }

@@ -1,12 +1,21 @@
 {% extends 'base.twig' %}
 
 {% block body %}
+
+    {% if user is not null %}
+        <p>Привет, {{ user.username|escape }}</p>
+    {% else %}
+        <p>Вы не вошли в свой аккаунт</p>
+    {% endif %}
+
 <div class="container">
     {% set rowCount = 1 %}
     {% for post in posts %}
         {% if rowCount == 1 %}
     <div class="container row">
         {% endif %}
+
+
         <div class="p-1">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
