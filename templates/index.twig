@@ -2,13 +2,13 @@
 
 {% block body %}
 
+
+<div class="container">
     {% if user is not null %}
         <p>Привет, {{ user.username|escape }}</p>
     {% else %}
         <p>Вы не вошли в свой аккаунт</p>
     {% endif %}
-
-<div class="container">
     {% set rowCount = 1 %}
     {% for post in posts %}
         {% if rowCount == 1 %}

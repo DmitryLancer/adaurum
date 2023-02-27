@@ -20,16 +20,16 @@ class Authorization
     public function register(array $data): bool
     {
         if (empty($data['username'])) {
-            throw new AuthorizationException('The username should be empty');
+            throw new AuthorizationException('Поле "Имя пользователя" не заполнено');
         }
         if (empty($data['email'])) {
-            throw new AuthorizationException('The email should be empty');
+            throw new AuthorizationException('Поле "Email" не заполнено');
         }
         if (empty($data['password'])) {
-            throw new AuthorizationException('The password should be empty');
+            throw new AuthorizationException('Поле "Пароль" не заполнено');
         }
         if ($data['password'] !== $data['confirm_password']) {
-            throw new AuthorizationException('The Password and Confirm password should match!');
+            throw new AuthorizationException('Пароли не совпадают!');
         }
 
         $statement = $this->connection->prepare(
@@ -72,10 +72,10 @@ class Authorization
     public function login(string $email, $password): bool
     {
         if (empty($email)) {
-            throw new AuthorizationException('The email should be empty');
+            throw new AuthorizationException('Поле "Email" не заполнено');
         }
         if (empty($password)) {
-            throw new AuthorizationException('The password should be empty');
+            throw new AuthorizationException('Поле "Пароль" не заполнено');
         }
 
         $statement = $this->connection->prepare(
@@ -87,7 +87,7 @@ class Authorization
 
         $user = $statement->fetch();
         if (empty($user)) {
-            throw new AuthorizationException('User with such email not found');
+            throw new AuthorizationException('Пользователь с такой почтой не найден');
         }
 
         if (password_verify($password, $user['password'])) {
@@ -99,7 +99,7 @@ class Authorization
             return true;
         }
 
-        throw new AuthorizationException('Incorrect email or password');
+        throw new AuthorizationException('Неправильно введена почта или пароль');
     }
 
 }

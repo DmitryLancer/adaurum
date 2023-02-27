@@ -3,24 +3,30 @@
 {% block body %}
 
 
-        <h1>Login form!</h1>
+
 
         {% if message is not null %}
             <div class="alert alert-danger" role="alert">
                 {{ message }}
             </div>
         {% endif %}
-
-    <form method="post" action="/login-post">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6 text-center">
+            <h1>Авторизация</h1>
+    <form method="post" style="max-width: 500px;" action="/login-post">
         <div class="form-group">
-            <lable for="username">Email</lable>
+            <lable for="username">Email :</lable>
             <input type="text" name="email" class="form-control" id="email" value="{{ form ? form.email }}">
         </div>
         <div class="form-group">
-            <lable for="password">Password</lable>
+            <lable for="password">Пароль :</lable>
             <input type="password" name="password" class="form-control" id="password">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Войти</button>
     </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
