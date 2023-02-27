@@ -60,6 +60,13 @@ $app->get('/', function (Request $request, Response $response, $args) use ($view
     return $response;
 });
 
+$app->get('/create', function (Request $request, Response $response, $args) use ($view, $postMapper, $session) {
+
+    $body = $view->render('section/create.twig');
+    $response->getBody()->write($body);
+    return $response;
+});
+
 $app->get('/login', function (Request $request, Response $response) use ($view, $session) {
     $body = $view->render('section/login.twig', [
         'message' => $session->flush('message'),
@@ -140,5 +147,9 @@ $app->get('/{url_key}', function (Request $request, Response $response, $args) u
     $response->getBody()->write($body);
     return $response;
 });
+
+
+
+
 
 $app->run();
