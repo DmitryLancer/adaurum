@@ -65,6 +65,44 @@ class Authorization
             'password' => password_hash($data['password'], PASSWORD_BCRYPT),
         ]);
 
+        return true;
+    }
+
+    public function create(array $data)
+    {
+
+//        ($name, $inn, $info, $director, $adress, $phone)
+            if (empty($data['name'])) {
+            throw new CreateException('naimenovanite');
+            }
+            if (empty($data['inn'])) {
+                throw new CreateException('Поле "Email" не заполнено');
+            }
+            if (empty($data['info'])) {
+                throw new CreateException('Поле "Пароль" не заполнено');
+            }
+            if (empty($data['director'])) {
+                throw new CreateException('Поле "Пароль" не заполнено');
+            }
+            if (empty($data['adress'])) {
+                throw new CreateException('Поле "Пароль" не заполнено');
+            }
+            if (empty($data['phone'])) {
+                throw new CreateException('Поле "Пароль" не заполнено');
+            }
+
+
+        $statement = $this->connection->prepare(
+            'INSERT INTO post (name, inn, info, director, adress, phone) VALUES (:name, :inn, :info, :director, :adress, :phone)'
+        );
+        $statement->execute([
+            'name' => $data['name'],
+            'inn' => $data['inn'],
+            'info' => $data['info'],
+            'director' => $data['director'],
+            'adress' => $data['adress'],
+            'phone' => $data['phone'],
+        ]);
 
         return true;
     }
